@@ -18,7 +18,7 @@ jobs:
     - name: Set up Node.js version
       uses: actions/setup-node@v1
       with:
-        node-version: '12.x'
+        node-version: '10.10'
 
     - name: npm install, build, and test
       run: |
@@ -31,5 +31,5 @@ jobs:
       with:
         app-name: 'naotimetrack'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_73ea4f72d9144e6c93723c2b517571aa }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_a09e835cea50462897e7ec6d55eb5d7b }}
         package: .
