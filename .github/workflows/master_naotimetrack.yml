@@ -25,7 +25,7 @@ jobs:
         npm install -g grunt bower
         npm install
         bower install
-        grunt serve
+        grunt build
 
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v1
