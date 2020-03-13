@@ -5,6 +5,6 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/tttime-test'
+    uri: 'mongodb://naotimetrack:gmWYFsihKEeskE8sbDn413SzqPzlpp5HbdPQI44UvWZt2A5lFEPaXdBzDgVIdlqUINLHtKPoGtgLA98yIABSXQ%3D%3D@naotimetrack.mongo.cosmos.azure.com:10255/?ssl=true&appName=@naotimetrack@'
   }
 };
