@@ -22,9 +22,10 @@ jobs:
 
     - name: npm install, build, and test
       run: |
+        npm install -g grunt bower
         npm install
-        npm run build --if-present
-        npm run test --if-present
+        bower install
+        grunt build
 
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v1
