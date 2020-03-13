@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@master
@@ -18,7 +18,7 @@ jobs:
     - name: Set up Node.js version
       uses: actions/setup-node@v1
       with:
-        node-version: '10.10'
+        node-version: '12.13.0'
 
     - name: npm install, build, and test
       run: |
@@ -31,5 +31,5 @@ jobs:
       with:
         app-name: 'naotimetrack'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_a09e835cea50462897e7ec6d55eb5d7b }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_e4e9a96ed8e94e8f99c9d0f66d716cf3 }}
         package: .
