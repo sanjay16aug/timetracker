@@ -598,11 +598,11 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
-    'cdnify',
-    'cssmin',
-    'uglify',
-    'rev',
-    'usemin'
+    'cdnify --force',
+    'cssmin --force',
+    'uglify --force',
+    'rev --force',
+    'usemin --force'
   ]);
 
   grunt.registerTask('default', [
