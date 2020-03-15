@@ -3,7 +3,7 @@
 /**
  * Removes server error when user updates input
  */
-angular.module('tttimeApp')
+angular.module('naoWorkTrackerApp')
   .directive('mongooseError', function () {
     return {
       restrict: 'A',

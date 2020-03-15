@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: SummaryCtrl', function () {
+describe('Controller: FullsummaryCtrl', function () {
 
   // load the controller's module
   beforeEach(module('naoWorkTrackerApp'));

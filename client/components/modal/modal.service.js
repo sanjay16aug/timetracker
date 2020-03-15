@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('tttimeApp')
+angular.module('naoWorkTrackerApp')
   .factory('Modal', function ($rootScope, $modal) {
     /**
      * Opens a modal

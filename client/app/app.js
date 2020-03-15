@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('tttimeApp', [
+angular.module('naoWorkTrackerApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
@@ -15,23 +15,23 @@ angular.module('tttimeApp', [
     $httpProvider.interceptors.push('authInterceptor');
   })
 
-  .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
+  .factory('authInterceptor', function ($rootScope, $q, $cookies, $location) {
     return {
       // Add authorization token to headers
       request: function (config) {
         config.headers = config.headers || {};
-        if ($cookieStore.get('token')) {
-          config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
+        if ($cookies.get('token')) {
+          config.headers.Authorization = 'Bearer ' + $cookies.get('token');
         }
         return config;
       },
 
       // Intercept 401s and redirect you to login
-      responseError: function(response) {
-        if(response.status === 401) {
+      responseError: function (response) {
+        if (response.status === 401) {
           $location.path('/login');
           // remove any stale tokens
-          $cookieStore.remove('token');
+          $cookies.remove('token');
           return $q.reject(response);
         }
         else {
@@ -44,7 +44,7 @@ angular.module('tttimeApp', [
   .run(function ($rootScope, $location, Auth) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
-      Auth.isLoggedInAsync(function(loggedIn) {
+      Auth.isLoggedInAsync(function (loggedIn) {
         if (next.authenticate && !loggedIn) {
           $location.path('/login');
         }

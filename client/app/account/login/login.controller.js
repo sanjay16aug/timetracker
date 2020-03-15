@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('tttimeApp')
+angular.module('naoWorkTrackerApp')
   .controller('LoginCtrl', function ($scope, Auth, $location, $window) {
     $scope.user = {};
     $scope.errors = {};

@@ -300,7 +300,7 @@ module.exports = function (grunt) {
     ngtemplates: {
       options: {
         // This should be the name of your apps angular module
-        module: 'tttimeApp',
+        module: 'naoWorkTrackerApp',
         htmlmin: {
           collapseBooleanAttributes: true,
           collapseWhitespace: true,
@@ -341,6 +341,7 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>/public',
           src: [
             '*.{ico,png,txt}',
+            '.htaccess',
             'bower_components/**/*',
             'assets/images/{,*/}*.{webp}',
             'assets/fonts/**/*',
@@ -406,7 +407,7 @@ module.exports = function (grunt) {
         }
       },
       dist: [
-      
+        // 'imagemin',
         'svgmin'
       ]
     },
@@ -596,12 +597,12 @@ module.exports = function (grunt) {
     'ngtemplates',
     'concat',
     'ngAnnotate',
-    'copy:dist'
-    // 'cdnify --force',
-    // 'cssmin --force',
-    // 'uglify --force',
-    // 'rev --force',
-    // 'usemin --force'
+    'copy:dist',
+    // 'cdnify',
+    'cssmin',
+    'uglify',
+    'rev',
+    'usemin'
   ]);
 
   grunt.registerTask('default', [

@@ -3,7 +3,7 @@
 describe('Service: Workentry', function () {
 
   // load the service's module
-  beforeEach(module('tttimeApp'));
+  beforeEach(module('naoWorkTrackerApp'));
 
   // instantiate service
   var Workentry, $httpBackend;

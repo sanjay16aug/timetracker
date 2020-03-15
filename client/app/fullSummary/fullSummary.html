@@ -1,9 +1,9 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <header class="hero-unit" id="banner">
-  <div class="container">
+  <!-- <div class="container">
     <h1>NAO Work Tracker</h1>
-  </div>
+  </div> -->
 </header>
 
 <div class="container">
@@ -33,6 +33,32 @@
       </div>
 
     </div>
+    <div class="col-xs-12 col-sm-8  hidden-print">
+      <h3 class="page-header">Filter Resource</h3>
+      <div class="form-group">
+        Select:
+        <div class="input-group ">
+          <!-- <select  class="form-control" ng-model="selectResource">
+            <option ng-repeat="x in allUser" value="{{x.id}}">{{x.name}}</option>
+            </select> -->
+            <select class="form-control" ng-change="filterEntries()" ng-model="selectResource" ng-options="x.name for x in allUser">
+              <option value=""></option>
+            </select>
+              <!-- <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openDatePicker($event, filter.dateFrom)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span> -->
+        </div>
+      </div>
+      <!-- <form class="form-inline">
+        <div class="form-group">
+          <select  class="form-control" ng-model="selectedCar">
+            <option ng-repeat="x in allUser" value="{{x.id}}">{{x.name}}</option>
+            </select>
+        </div>
+
+      </form> -->
+    </div>
+
     <div class="row clearfix"></div>
     <div class="col-xs-12 col-sm-11">
       <h1 class="page-header">Work Summary</h1>
@@ -40,7 +66,9 @@
       <ul class="list-group">
         <li class="list-group-item single-entry {{entry.colorClass}}" ng-repeat="entry in filteredEntries | orderBy:'date'" ng-class="{'light-green':entry.totalHours >= prefHours, 'light-red':entry.totalHours < prefHours}">
           <span>
-            <strong>{{entry.date | date:'dd MMM yyyy'}} - {{entry.totalHours}} hours in total</strong><br>
+            <strong>Name : {{entry.user}}</strong><br>
+            <strong>Date : {{entry.date | date:'dd MMM yyyy'}}</strong><br>
+            <strong>Total Time Spent : {{entry.totalHours}}</strong><br>
             <ul class="subEntryList">
               <li class="subEntry" ng-repeat="subEntry in entry.entries">
                 {{subEntry.hours}} h - {{subEntry.desc}}

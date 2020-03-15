@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('tttimeApp')
+angular.module('naoWorkTrackerApp')
   .controller('SettingsCtrl', function ($scope, User, Auth) {
     $scope.alerts = [];
     $scope.errors = {};

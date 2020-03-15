@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('tttimeApp')
-  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q) {
+angular.module('naoWorkTrackerApp')
+  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookies, $q) {
     var currentUser = {};
-    if($cookieStore.get('token')) {
+    if ($cookies.get('token')) {
       currentUser = User.get();
     }
 
@@ -16,27 +16,26 @@ angular.module('tttimeApp')
        * @param  {Function} callback - optional
        * @return {Promise}
        */
-      login: function(user, callback) {
-        var cb = callback || angular.noop;
-        var deferred = $q.defer();
 
-        $http.post('/auth/local', {
+      login: function (user, callback) {
+        var cb = callback || angular.noop;
+        return $http.post('/auth/local', {
           email: user.email,
           password: user.password
-        }).
-        success(function(data) {
-          $cookieStore.put('token', data.token);
-          currentUser = User.get();
-          deferred.resolve(data);
-          return cb();
-        }).
-        error(function(err) {
-          this.logout();
-          deferred.reject(err);
-          return cb(err);
-        }.bind(this));
-
-        return deferred.promise;
+        })
+          .then(function (res) {
+            $cookies.put('token', res.data.token);
+            currentUser = User.get();
+            return currentUser.$promise;
+          })
+          .then(function (user) {
+            return user;
+          })
+          .catch(function (err) {
+            this.logout();
+            cb(err.data);
+            return $q.reject(err.data);
+          }.bind(this));
       },
 
       /**
@@ -44,8 +43,8 @@ angular.module('tttimeApp')
        *
        * @param  {Function}
        */
-      logout: function() {
-        $cookieStore.remove('token');
+      logout: function () {
+        $cookies.remove('token');
         currentUser = {};
       },
 
@@ -56,16 +55,16 @@ angular.module('tttimeApp')
        * @param  {Function} callback - optional
        * @return {Promise}
        */
-      createUser: function(user, callback) {
+      createUser: function (user, callback) {
         var cb = callback || angular.noop;
 
         return User.save(user,
-          function(data) {
-            $cookieStore.put('token', data.token);
+          function (data) {
+            $cookies.put('token', data.token);
             currentUser = User.get();
             return cb(user);
           },
-          function(err) {
+          function (err) {
             this.logout();
             return cb(err);
           }.bind(this)).$promise;
@@ -79,15 +78,15 @@ angular.module('tttimeApp')
        * @param  {Function} callback    - optional
        * @return {Promise}
        */
-      changePassword: function(oldPassword, newPassword, callback) {
+      changePassword: function (oldPassword, newPassword, callback) {
         var cb = callback || angular.noop;
 
         return User.changePassword({ id: currentUser._id }, {
           oldPassword: oldPassword,
           newPassword: newPassword
-        }, function(user) {
+        }, function (user) {
           return cb(user);
-        }, function(err) {
+        }, function (err) {
           return cb(err);
         }).$promise;
       },
@@ -97,7 +96,7 @@ angular.module('tttimeApp')
        *
        * @return {Object} user
        */
-      getCurrentUser: function() {
+      getCurrentUser: function () {
         return currentUser;
       },
 
@@ -106,21 +105,21 @@ angular.module('tttimeApp')
        *
        * @return {Boolean}
        */
-      isLoggedIn: function() {
+      isLoggedIn: function () {
         return currentUser.hasOwnProperty('role');
       },
 
       /**
        * Waits for currentUser to resolve before checking if user is logged in
        */
-      isLoggedInAsync: function(cb) {
-        if(currentUser.hasOwnProperty('$promise')) {
-          currentUser.$promise.then(function() {
+      isLoggedInAsync: function (cb) {
+        if (currentUser.hasOwnProperty('$promise')) {
+          currentUser.$promise.then(function () {
             cb(true);
-          }).catch(function() {
+          }).catch(function () {
             cb(false);
           });
-        } else if(currentUser.hasOwnProperty('role')) {
+        } else if (currentUser.hasOwnProperty('role')) {
           cb(true);
         } else {
           cb(false);
@@ -132,15 +131,15 @@ angular.module('tttimeApp')
        *
        * @return {Boolean}
        */
-      isAdmin: function() {
+      isAdmin: function () {
         return currentUser.role === 'admin';
       },
 
       /**
        * Get auth token
        */
-      getToken: function() {
-        return $cookieStore.get('token');
+      getToken: function () {
+        return $cookies.get('token');
       }
     };
   });

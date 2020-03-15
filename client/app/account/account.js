@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('tttimeApp')
+angular.module('naoWorkTrackerApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('login', {

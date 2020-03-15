@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('tttimeApp')
+angular.module('naoWorkTrackerApp')
   .controller('SummaryCtrl', function ($scope, Auth, Workentry) {
     $scope.workEntries = [];
     $scope.newEntry = {};

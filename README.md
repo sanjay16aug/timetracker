@@ -1,4 +1,4 @@
-Time Tracker App
+NAO Work Tracker
 ====
 
 Introduction
@@ -36,7 +36,3 @@ To run the app:
 4) in project folder and run `bower install`
 
 5) in project folder and run `grunt serve` (in development mode) or `grunt serve:dist`
-
-Screenshot
-----
-<img src="./screenshot.png"></img>

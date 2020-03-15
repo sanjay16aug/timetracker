@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('tttimeApp')
+angular.module('naoWorkTrackerApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [{
       'title': 'Home',
@@ -9,6 +9,9 @@ angular.module('tttimeApp')
     {
       'title': 'Summary',
       'link': '/summary'
+    },{
+      'title': 'Resource',
+      'link': '/fullsummary'
     }];
 
     $scope.isCollapsed = true;
