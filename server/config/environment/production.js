@@ -18,6 +18,6 @@ module.exports = {
     uri:    process.env.MONGOLAB_URI ||
             process.env.MONGOHQ_URL ||
             process.env.OPENSHIFT_MONGODB_DB_URL+process.env.OPENSHIFT_APP_NAME ||
-            'mongodb://dineshnadar:dineshnadar@testdb-n15a4.mongodb.net/test?retryWrites=true'
+            'mongodb://naotimetrack:gmWYFsihKEeskE8sbDn413SzqPzlpp5HbdPQI44UvWZt2A5lFEPaXdBzDgVIdlqUINLHtKPoGtgLA98yIABSXQ==@naotimetrack.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@naotimetrack@'
   }
 };
